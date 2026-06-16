@@ -277,6 +277,7 @@ function chooseBreaks(startMin){
 
 function getBreakWindows(breaks, start, end){
     const windows = [];
+    const seen = new Set();
 
     for(let d = -1; d <= 2; d++){
         for(const b of breaks){
@@ -290,6 +291,9 @@ function getBreakWindows(breaks, start, end){
             }
 
             if(s < end && e > start){
+                const key = `${s}-${e}`;
+                if(seen.has(key)) continue;
+                seen.add(key);
                 windows.push({ s, e, label:b });
             }
         }
