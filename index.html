@@ -259,6 +259,10 @@ function fmtDuration(min){
     return `${h}時間${String(m).padStart(2,"0")}分`;
 }
 
+function fmtHours(min){
+    return (min / 60).toFixed(2) + "h";
+}
+
 function roundUp15(min){
     return Math.ceil(min / 15) * 15;
 }
@@ -403,7 +407,7 @@ function calculateOvertime(){
             <div class="startTimeRounded">${fmt(sm)} → ${fmt(res.finish)}</div>
         </div>
         <div>残業時間</div>
-        <div class="overtimeValue">${fmtDuration(overtime)}</div>
+        <div class="overtimeValue">${fmtDuration(overtime)}（${fmtHours(overtime)}）</div>
         <div class="note">
             差し引いた休憩:
             ${res.usedBreaks.length
